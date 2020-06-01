@@ -1,0 +1,65 @@
+1.下载mysql：https://dev.mysql.com/downloads/mysql/
+
+以管理员身份打开 cmd 命令行工具，切换目录至下载mysql的安装目录：
+
+cd C:\web\mysql-8.0.11\bin
+初始化数据库：
+
+mysqld --initialize --console
+执行完成后，会输出 root 用户的初始默认密码，如：
+
+...
+2018-04-20T02:35:05.464644Z 5 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: APWCY5ws&hjQ
+...
+APWCY5ws&hjQ 就是初始密码，后续登录需要用到，你也可以在登陆后修改密码。
+
+输入以下安装命令：
+
+mysqld install
+启动输入以下命令即可：
+
+net start mysql
+注意: 在 5.7 需要初始化 data 目录：
+
+cd C:\web\mysql-8.0.11\bin 
+mysqld --initialize-insecure 
+初始化后再运行 net start mysql 即可启动 mysql。
+
+登录 MySQL
+当 MySQL 服务已经运行时, 我们可以通过 MySQL 自带的客户端工具登录到 MySQL 数据库中, 首先打开命令提示符, 输入以下格式的命名:
+
+mysql -h 主机名 -u 用户名 -p
+参数说明：
+
+-h : 指定客户端所要登录的 MySQL 主机名, 登录本机(localhost 或 127.0.0.1)该参数可以省略;
+-u : 登录的用户名;
+-p : 告诉服务器将会使用一个密码来登录, 如果所要登录的用户名密码为空, 可以忽略此选项。
+如果我们要登录本机的 MySQL 数据库，只需要输入以下命令即可：
+
+mysql -u root -p
+按回车确认, 如果安装正确且 MySQL 正在运行, 会得到以下响应:
+
+Enter password:
+若密码存在, 输入密码登录, 不存在则直接按回车登录。登录成功后你将会看到 Welcome to the MySQL monitor... 的提示语。
+
+然后命令提示符会一直以 mysq> 加一个闪烁的光标等待命令的输入, 输入 exit 或 quit 退出登录。
+
+
+2.安装mysql可视化工具：Navicat for MySQL
+ 下载地址：https://blog.csdn.net/pc915968220/article/details/100763987
+ 出现可视化工具连接mysql失败的情况下，在命令行中执行
+	1.alter user 'root'@'localhost' identified with mysql_native_password by '123456';   by后面加的是重置的密码
+	2.flush privileges;
+
+
+mysql语句：
+1.查询user表中的所有数据:select * from user   
+2.查询userInfo表中name为**的数据，在sqlArr中传入name值：select * from userInfo where name=?
+3.插入数据：insert into user(name,age,create_timer) value(?,?,?)
+4.更新数据：update user set name=?,age=? where id=?   表示更新user表中id为**的name和age数据修改
+
+mysql返回结果是否成功affectedRows=1为成功；-1为失败
+
+3.链表查询案例
+https://www.cnblogs.com/dongxixi/p/10879008.html
+	

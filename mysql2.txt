@@ -1,0 +1,126 @@
+﻿// 创建数据库
+// create database dbname;
+
+// 删除数据库
+// drop database dbname;
+
+// 选择数据库
+// use dbname;
+
+// 插入数据
+// insert into book values(值1，值2，....);#值的顺序与字段在表中的顺序一致
+// insert into book（title,author）
+//      values('Java学习路线'，'Java学习录');#为指定字段赋值
+// insert into book（title,author）
+//      select title,author from test;#copy另一张表的数据
+// insert into user(name,age,create_timer) value(?,?,?)
+
+// 修改表数据
+// update table set title='学习笔记',date='2019-05-21'
+// update user set name=?,age=? where id=?
+
+// 删除表数据
+// truncate table book;#删除表中所有数据
+// delete from book where xx=yy;#根据条件删除表中数据
+
+// 查询
+// select * from book;
+
+// 去除结果集中的重复元素
+// select distinct(title) from book;
+
+// 模糊查询
+// select * from book where title like "Java%";#查询以Java开头的数据，只有这样使用索引以下两种不使用索引
+// select * from book where title like "%Java";#查询以Java结尾的数据
+// select * from book where title like "%Java%";#查询包含Java的数据
+
+// 分组
+// select count(*) from book group by author ='Java学习录' #查询公众号Java学习录一共写了多少篇文章
+var count = await mysql.sysqlConnect("select count(*) as total from user  where name like ?",[sqlArr]);
+count.total//5
+
+// 排序
+// select * from book order by date ASC#默认就是ASC 可省略，按date升序排列
+// select * from book order by date DESC#按date降序排列
+
+// 分页
+// select * from table limit 5; #返回前5行
+// select * from table limit 0,5; #同上，返回前5行
+// select * from table limit 5,10; #返回6-15行
+
+// 查看表结构
+// show columns from book;
+
+// 修改表名
+// alter table book RENAME TO book1;
+
+// 删除表字段
+// alter table book drop press;
+
+// 修改表字段
+// alter table book modify press char;
+
+// 删除表
+// drop table book;
+
+// 创建索引
+// create index title_index ON book(title(100)); 
+// alter table book ADD INDEX title_index(title)
+
+// 删除索引
+// drop index title_index ON book;
+
+// 常用函数
+// character_length("title") #字符串title的字符数
+// concat("title","author") #将字符串title和author合并为一个字符串
+// concat_ws(",""title","author") #将字符串title和author合并为一个字符串，合并时使用逗号作为分隔符
+// lower("title") #将字符串title的内容转为小写
+// upper("title") #将字符串title的内容转为大写
+// reverse("title") #反转字符串title
+// abs("price") #求price的绝对值
+// avg("price") #求price的平均值
+// count("price") #求price的总记录数
+// max("price") #求price的最大值
+// min("price") #求price的最小值
+// sum("price") #求price的和
+// rand()#返回0-1之间的随机数
+// adddate("date",n) #date加上n天的时间
+// addtime("date",n) #date加上n秒的时间
+// curdate() #当前日期
+// current_time() #当前时间
+// current_timestamp() #当前日期时间
+// datediff(d1,d2) #d1和d2相隔的天数
+// period_diff(d1,d2) #d1和d2相隔的月数
+// subdate(d,n) #d减去n天的日期
+// subtime(d,n) #d减去n秒的时间
+// connection_id()#服务器当前连接数
+// case when
+
+// CASE expression
+//     WHEN condition1 THEN result1
+//     WHEN condition2 THEN result2
+//    ..
+//     WHEN conditionN THEN resultN
+//     ELSE result
+// END
+// #CASE 表示函数开始
+// #END 表示函数结束
+// #如果 condition1 成立
+// #则返回 result1
+// #如果 condition2 成立
+// #则返回 result2
+// #当全部不成立则返回 result
+// #而当有一个成立之后，后面的就不执行了
+// IF
+// IF(expr,v1,v2)#如果表达式 expr 成立，返回结果 v1；否则，返回结果 v2。
+// IFNULL
+// IFNULL(v1,v2)#如果 v1 的值不为 NULL，则返回 v1，否则返回 v2
+
+// 合并结果集
+// select title from book1 union select title from book2
+
+// 连接(left jion/right jion/jion/逗号)
+// select * from book1 left jion book2 where xx=yy #获取左表所有记录，即使右表没有对应匹配的记录
+// select * from book1 right jion book2 where xx=yy #获取右表所有记录，即使左表没有对应匹配的记录
+// select * from book1 jion book2 where xx=yy #获取两个表中字段匹配关系的记录
+// select * from book1 , book2 where xx=yy#同jion

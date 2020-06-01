@@ -1,0 +1,31 @@
+1.滚动到顶部
+const scrollToTop = () => {
+       
+  const c = document.documentElement.scrollTop || document.body.scrollTop;
+   
+  if (c > 0) {
+   
+      window.requestAnimationFrame(scrollToTop);
+    
+      window.scrollTo(0, c - c / 8);
+  
+   }
+
+}
+
+
+// 事例
+scrollToTop()
+
+2.微信小程序展开文章收起文章
+https://www.jb51.net/article/141882.htm
+
+3.vue按钮限制
+import {debounce} from 'lodash'
+ remoteMethod： debounce(function (query) {
+        // to do ...
+      	// this 的指向没有问题
+    }, 200),
+
+4.mysql语句
+https://www.csdn.net/gather_2c/MtTaIg1sNjUyNi1ibG9n.html

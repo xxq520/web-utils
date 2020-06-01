@@ -1,0 +1,46 @@
+https://github.com/qiushi123/cloud-pay  云开发支付
+https://blog.csdn.net/qiushi_1990/article/details/103672872  云开发模板信息
+https://blog.csdn.net/weixin_41595277/article/details/102765508 聊天室
+requestSubscribeMessage(获取用户订阅授权) 
+
+private static String APP_ID = "wxc8dabb372dd5da60";
+private static String MCH_ID = "1498756052";
+private static String API_KEY = "sdfasdgasg4a12135646adfabvbba566";
+private static String APP_SECRET = "a67abadd8413ee930a9a1aba8dd5fe56";
+
+// 生成海报
+https://developers.weixin.qq.com/community/develop/article/doc/0008ea33e18b6848a95aa6f6c5b013
+
+// 状态栏渐变
+https://developers.weixin.qq.com/s/KyKkpmmb7hhi
+
+// 小程序的表单的组件化封装及使用
+https://developers.weixin.qq.com/community/develop/article/doc/000ac6970082208e965acc9c051813
+
+// 图片懒加载
+https://developers.weixin.qq.com/community/develop/article/doc/0006ec5c46c930ee675ab198a5b413
+
+// 客服
+https://developers.weixin.qq.com/community/develop/article/doc/000e4662d5c4c0e2455a3a3ef5f413
+
+// 检测线上版本更新
+ const updateManager = wx.getUpdateManager()
+            updateManager.onCheckForUpdate(function (res) {
+            // 请求完新版本信息的回调
+            console.log(res.hasUpdate)
+            })
+            updateManager.onUpdateReady(function () {
+            wx.showModal({
+                title: '更新提示',
+                content: '新版本已经准备好，是否重启应用？',
+                success(res) {
+                if (res.confirm) {
+                    // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+                    updateManager.applyUpdate()
+                }
+                }
+            })
+            })
+            updateManager.onUpdateFailed(function () {
+            // 新版本下载失败
+            })
